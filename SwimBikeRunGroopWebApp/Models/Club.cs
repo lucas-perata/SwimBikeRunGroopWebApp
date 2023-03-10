@@ -15,6 +15,8 @@ namespace SwimBikeRunGroopWebApp.Models
         public bool IsWomensOnly { get; set; }
         public ClubCategory ClubCategory { get; set; }
 
+        public ICollection<Training> Training { get; set; }
+
         [ForeignKey("Address")]
         public int AddressId { get; set; }
         public Address Address { get; set; }

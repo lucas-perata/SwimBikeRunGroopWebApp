@@ -214,6 +214,9 @@ namespace SwimBikeRunGroopWebApp.Migrations
                     b.Property<int>("AveragePace")
                         .HasColumnType("int");
 
+                    b.Property<int>("ClubId")
+                        .HasColumnType("int");
+
                     b.Property<int>("DistanceFromStart")
                         .HasColumnType("int");
 
@@ -231,6 +234,8 @@ namespace SwimBikeRunGroopWebApp.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
+
+                    b.HasIndex("ClubId");
 
                     b.ToTable("Trainings");
                 });
@@ -278,7 +283,15 @@ namespace SwimBikeRunGroopWebApp.Migrations
                         .WithMany("Trainings")
                         .HasForeignKey("AppUserId");
 
+                    b.HasOne("SwimBikeRunGroopWebApp.Models.Club", "Club")
+                        .WithMany("Training")
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AppUser");
+
+                    b.Navigation("Club");
                 });
 
             modelBuilder.Entity("SwimBikeRunGroopWebApp.Models.AppUser", b =>
@@ -288,6 +301,11 @@ namespace SwimBikeRunGroopWebApp.Migrations
                     b.Navigation("Races");
 
                     b.Navigation("Trainings");
+                });
+
+            modelBuilder.Entity("SwimBikeRunGroopWebApp.Models.Club", b =>
+                {
+                    b.Navigation("Training");
                 });
 #pragma warning restore 612, 618
         }

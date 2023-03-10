@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SwimBikeRunGroopWebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreated : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -128,6 +128,7 @@ namespace SwimBikeRunGroopWebApp.Migrations
                     StartAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AveragePace = table.Column<int>(type: "int", nullable: false),
                     SportCategory = table.Column<int>(type: "int", nullable: false),
+                    ClubId = table.Column<int>(type: "int", nullable: false),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
@@ -138,6 +139,12 @@ namespace SwimBikeRunGroopWebApp.Migrations
                         column: x => x.AppUserId,
                         principalTable: "AppUser",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Trainings_Clubs_ClubId",
+                        column: x => x.ClubId,
+                        principalTable: "Clubs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -164,19 +171,24 @@ namespace SwimBikeRunGroopWebApp.Migrations
                 name: "IX_Trainings_AppUserId",
                 table: "Trainings",
                 column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trainings_ClubId",
+                table: "Trainings",
+                column: "ClubId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Clubs");
-
-            migrationBuilder.DropTable(
                 name: "Races");
 
             migrationBuilder.DropTable(
                 name: "Trainings");
+
+            migrationBuilder.DropTable(
+                name: "Clubs");
 
             migrationBuilder.DropTable(
                 name: "AppUser");

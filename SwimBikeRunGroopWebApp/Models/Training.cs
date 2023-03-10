@@ -8,8 +8,9 @@ namespace SwimBikeRunGroopWebApp.Models
     {
         [Key]
         public int Id { get; set; }
+        public string Title { get; set; }
         public int DistanceFromStart { get; set; }
-        public int StartAddress { get; set; }
+        public string StartAddress { get; set; }
         public int AveragePace { get; set; }
         public SportCategory SportCategory { get; set; }
 

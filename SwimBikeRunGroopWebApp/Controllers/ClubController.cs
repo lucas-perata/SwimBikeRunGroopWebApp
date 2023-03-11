@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SwimBikeRunGroopWebApp.Data;
+using SwimBikeRunGroopWebApp.Interfaces;
 using SwimBikeRunGroopWebApp.Models;
 using System;
 using System.Dynamic;
@@ -9,20 +10,20 @@ namespace SwimBikeRunGroopWebApp.Controllers
 {
     public class ClubController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public ClubController(ApplicationDbContext context) 
+        private readonly IClubRepository _clubRepository;
+        public ClubController(IClubRepository clubRepository) 
         { 
-            _context = context;
+            _clubRepository = clubRepository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var clubs = _context.Clubs.ToList();
+            IEnumerable<Club> clubs = await _clubRepository.GetAll();
             return View(clubs);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            var club = _context.Clubs.Where(c => c.Id == id).Include(c => c.Address).Include(c => c.Training).FirstOrDefault();
+            Club club = await _clubRepository.GetByIdAsync(id);
             return View(club);
         }
     }

@@ -1,27 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SwimBikeRunGroopWebApp.Data;
+using SwimBikeRunGroopWebApp.Interfaces;
+using SwimBikeRunGroopWebApp.Models;
 
 namespace SwimBikeRunGroopWebApp.Controllers
 {
     public class TrainingController : Controller
     {
-        private readonly ApplicationDbContext _context;
-
-        public TrainingController(ApplicationDbContext context)
+        private readonly ITrainingRepository _trainingRepository;
+        public TrainingController(ITrainingRepository trainingRepository)
         {
-            _context = context;
+            _trainingRepository = trainingRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var trainings = _context.Trainings.ToList();
+            IEnumerable<Training> trainings = await _trainingRepository.GetAll();
             return View(trainings);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            var training = _context.Trainings.Where(t => t.Id == id).Include(c => c.Club).FirstOrDefault(); 
+            Training training = await _trainingRepository.GetById(id);
             return View(training);
         }
     }

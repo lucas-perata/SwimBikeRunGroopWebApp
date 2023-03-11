@@ -1,0 +1,55 @@
+﻿using Microsoft.EntityFrameworkCore;
+using SwimBikeRunGroopWebApp.Data;
+using SwimBikeRunGroopWebApp.Interfaces;
+using SwimBikeRunGroopWebApp.Models;
+
+namespace SwimBikeRunGroopWebApp.Repository
+{
+    public class TrainingRepository : ITrainingRepository
+    {
+        private readonly ApplicationDbContext _context;
+
+        public TrainingRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        public bool Add(Training training)
+        {
+            _context.Add(training);
+            return Save();
+        }
+
+        public bool Delete(Training training)
+        {
+            _context.Remove(training);
+            return Save();
+        }
+
+        public async Task<IEnumerable<Training>> GetAll()
+        {
+            return await _context.Trainings.ToListAsync();
+        }
+
+        public async Task<Training> GetById(int id)
+        {
+            return await _context.Trainings.Where(t => t.Id == id).FirstOrDefaultAsync();
+        }
+
+        public async Task<IEnumerable<Training>> GetTrainingByAddress(string startAddress)
+        {
+            return await _context.Trainings.Where(t => t.StartAddress == startAddress).ToListAsync();
+        }
+
+        public bool Save()
+        {
+            var save =_context.SaveChanges();
+            return save > 0 ? true : false; 
+        }
+
+        public bool Update(Training training)
+        {
+            _context.Update(training);
+            return Save();
+        }
+    }
+}

@@ -13,7 +13,8 @@ namespace SwimBikeRunGroopWebApp.Models
         public string StartAddress { get; set; }
         public int AveragePace { get; set; }
         public SportCategory SportCategory { get; set; }
-        public Club Club { get; set; }
+        public Club? Club { get; set; }
+        public int? ClubId { get; set; }
 
         [ForeignKey("AppUser")]
         public string? AppUserId {get; set; }

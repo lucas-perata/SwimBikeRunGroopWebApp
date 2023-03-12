@@ -12,7 +12,7 @@ using SwimBikeRunGroopWebApp.Data;
 namespace SwimBikeRunGroopWebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230310163010_Initial Create")]
+    [Migration("20230312020213_Initial Create")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -127,11 +127,11 @@ namespace SwimBikeRunGroopWebApp.Migrations
 
             modelBuilder.Entity("SwimBikeRunGroopWebApp.Models.Club", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ClubId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClubId"));
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
@@ -161,7 +161,7 @@ namespace SwimBikeRunGroopWebApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ClubId");
 
                     b.HasIndex("AddressId");
 

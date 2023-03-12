@@ -181,6 +181,34 @@ namespace RunGroopWebApp.Data
                     }); ;
                     context.SaveChanges();
                 }
+
+                if (context.Trainings.Any())
+                {
+                    context.Trainings.AddRange(new List<Training>()
+                    {
+                        new Training()
+                        {
+                             Title = "Prueba externa1",
+                                    DistanceFromStart = 4,
+                                    StartAddress = "Posta",
+                                    SportCategory = SportCategory.Swimming,
+                                    AveragePace = 5,
+                                    ClubId =1
+
+                        },
+                       new Training()
+                        {
+                             Title = "Prueba externa",
+                                    DistanceFromStart = 4,
+                                    StartAddress = "Posta",
+                                    SportCategory = SportCategory.Swimming,
+                                    AveragePace = 5,
+                                    ClubId = 1
+
+                        }
+                    }); ;
+                    context.SaveChanges();
+                }
                 /* Training
                 if (!context.Trainings.Any())
                 {

@@ -23,12 +23,14 @@
             <ul>
                 <li>@Model.ClubCategory</li>
                 <li>@Model.Address.Province</li>
-                <li>@Model.Training.First().AveragePace</li>
             </ul>
             
-            @foreach (var item in Model.Training)
+            @if (Model.Training.Any())
             {
-                <p>@item.Title</p>
+                @foreach (var item in Model.Training)
+                {
+                    <p>@item.Title</p>
+                }
             }
         </div>
 

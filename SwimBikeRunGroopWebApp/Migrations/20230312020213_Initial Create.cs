@@ -68,7 +68,7 @@ namespace SwimBikeRunGroopWebApp.Migrations
                 name: "Clubs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    ClubId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -81,7 +81,7 @@ namespace SwimBikeRunGroopWebApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clubs", x => x.Id);
+                    table.PrimaryKey("PK_Clubs", x => x.ClubId);
                     table.ForeignKey(
                         name: "FK_Clubs_Addresses_AddressId",
                         column: x => x.AddressId,
@@ -143,7 +143,7 @@ namespace SwimBikeRunGroopWebApp.Migrations
                         name: "FK_Trainings_Clubs_ClubId",
                         column: x => x.ClubId,
                         principalTable: "Clubs",
-                        principalColumn: "Id",
+                        principalColumn: "ClubId",
                         onDelete: ReferentialAction.Cascade);
                 });
 

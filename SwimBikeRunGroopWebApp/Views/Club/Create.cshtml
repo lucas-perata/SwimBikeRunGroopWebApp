@@ -1,5 +1,6 @@
-﻿@using SwimBikeRunGroopWebApp.Data.Enum;
-@model Club
+﻿@using SwimBikeRunGroopWebApp.Data.Enum
+@using SwimBikeRunGroopWebApp.ViewModels;
+@model CreateClubViewModel
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -50,7 +51,7 @@
             <span asp-validation-for="IsWomensOnly" class="text-danger"></span>
         </div>
         <div class="custom-file">
-            <input asp-for="Image" class="custom-file-input" id="customFile">
+            <input asp-for="Image" type="file" class="custom-file-input" id="customFile">
             <label asp-for="Image" class="custom-file-label" for="customFile">Choose file</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

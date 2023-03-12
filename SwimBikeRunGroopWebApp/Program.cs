@@ -4,6 +4,7 @@ using SwimBikeRunGroopWebApp.Data;
 using SwimBikeRunGroopWebApp.Helpers;
 using SwimBikeRunGroopWebApp.Interfaces;
 using SwimBikeRunGroopWebApp.Repository;
+using SwimBikeRunGroopWebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddScoped<IClubRepository, ClubRepository>();
 builder.Services.AddScoped<IRaceRepository, RaceRepository>();
 builder.Services.AddScoped<ITrainingRepository, TrainingRepository>();
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
+builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

@@ -6,7 +6,7 @@ namespace SwimBikeRunGroopWebApp.Interfaces
     {
         Task<IEnumerable<Training>> GetAll();
         Task<Training> GetById(int id);
-
+        Task<Training> GetByIdNoTracking(int id);
         Task<IEnumerable<Training>> GetTrainingByAddress(string startAddress);
         bool Add(Training training);
         bool Update(Training training);

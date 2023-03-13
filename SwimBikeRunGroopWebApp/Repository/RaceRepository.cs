@@ -34,6 +34,11 @@ namespace SwimBikeRunGroopWebApp.Repository
             return await _context.Races.Where(r => r.Id == id).FirstOrDefaultAsync();
         }
 
+        public async Task<Race> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Races.Where(r => r.Id == id).AsNoTracking().FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<Race>> GetRaceByLocation(string location)
         {
             return await _context.Races.Where(r => r.Location == location).ToListAsync();
@@ -47,7 +52,7 @@ namespace SwimBikeRunGroopWebApp.Repository
 
         public bool Update(Race race)
         {
-            _context.Remove(race);
+            _context.Update(race);
             return Save();
         }
     }

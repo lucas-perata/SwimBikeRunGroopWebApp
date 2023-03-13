@@ -1,0 +1,226 @@
+[33mcommit 5ac20e166d1c1191d78bc3d574c91de002a87566[m[33m ([m[1;36mHEAD -> [m[1;32mFEAT/edit-pages[m[33m)[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Mon Mar 13 12:37:49 2023 -0300
+
+    Add edit action to Training and shortcout in index
+
+[33mcommit 3984a6b70fea32023d01f19095d865e743749093[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Mon Mar 13 12:05:01 2023 -0300
+
+    Add edit method to Races
+
+[33mcommit 7655bdcb5432453a0b9324cb449e6f8dabdf66f6[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Mon Mar 13 00:29:19 2023 -0300
+
+    Create Edit action in Club controller and EditClubViewModel
+
+[33mcommit e58fb5e205eac6e4a700de0e1f2a7d1a3464884e[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Mon Mar 13 00:28:52 2023 -0300
+
+    Create new interface GetByIdAsyncNoTracking
+
+[33mcommit e3a0812cbac3ae0a4035f865fd5fc2097b9df1c1[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Mon Mar 13 00:28:25 2023 -0300
+
+    Add index shortcut to edit and edit page in views
+
+[33mcommit 4a0a80d159fb12b8eecbf5504ae6d001bc9b7460[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: 4454e29 4c9223e
+Author: Lucas Perata <96967617+lucas-perata@users.noreply.github.com>
+Date:   Sun Mar 12 23:08:04 2023 -0300
+
+    Merge pull request #5 from lucas-perata/FEAT/photo-upload
+    
+    Feat/photo upload
+
+[33mcommit 4c9223e316fd5dbab1ba16a832f3aa2f90dfb5f1[m[33m ([m[1;31morigin/FEAT/photo-upload[m[33m, [m[1;32mFEAT/photo-upload[m[33m)[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Sun Mar 12 23:06:52 2023 -0300
+
+    Add photos to club directly in the view
+
+[33mcommit 4c94734dfad92df5f6b8afeeb3676a1aaad77ca9[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Sun Mar 12 17:10:38 2023 -0300
+
+    Add file upload to create Clubs and View Models to the method
+
+[33mcommit 958874c2bce2aa734ab0f8015fedb28a13894163[m
+Merge: a25b827 4454e29
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Sun Mar 12 16:15:00 2023 -0300
+
+    Merge branch 'master' of https://github.com/lucas-perata/SwimBikeRunGroopWebApp into FEAT/photo-upload
+
+[33mcommit a25b82717de6b5b27ad0e4c801ab6c3a89796596[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Sun Mar 12 16:12:51 2023 -0300
+
+    Added Cloudinary to the app including the interface, the package and the service
+
+[33mcommit 4454e296e16d54a4c40d9b9c93593590a9985428[m
+Merge: 8636db6 0f36073
+Author: Lucas Perata <96967617+lucas-perata@users.noreply.github.com>
+Date:   Sat Mar 11 23:38:22 2023 -0300
+
+    Merge pull request #2 from lucas-perata/FEAT/create-func
+    
+    Feat/create func
+
+[33mcommit 0f36073fc0a31e833f679e78502c85f8d8df5521[m[33m ([m[1;31morigin/FEAT/create-func[m[33m, [m[1;32mFEAT/create-func[m[33m)[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Sat Mar 11 23:34:45 2023 -0300
+
+    Change the name of the ID in trainings to Club ID and the id in club to Club id. Change the seed file to include this and the repository
+
+[33mcommit 5de17dc68850308308c247f51260aaf79e213175[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Sat Mar 11 23:33:36 2023 -0300
+
+    Fix to club index and add Create to training
+
+[33mcommit 1224e86db0e25d10c32a96447ed71f68c93b1b41[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Sat Mar 11 23:33:15 2023 -0300
+
+    Changes to migrations
+
+[33mcommit 1fa7c027008fa3dca9b63726304e06cde82852e6[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Sat Mar 11 21:22:38 2023 -0300
+
+    Add create to race controller and views
+
+[33mcommit bf3835f0222d64826fee4c5cab04eadeaba91dc1[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Sat Mar 11 17:21:51 2023 -0300
+
+    Add post controller and create view for Club + fix in detail
+
+[33mcommit 8636db61eea69d438af99141db2562a256c4df88[m
+Merge: 3afc73a 9efccf4
+Author: Lucas Perata <96967617+lucas-perata@users.noreply.github.com>
+Date:   Sat Mar 11 15:19:46 2023 -0300
+
+    Merge pull request #1 from lucas-perata/FEAT/dependency-injection+repository-pattern
+    
+    Feat/dependency injection+repository pattern
+
+[33mcommit 9efccf4f0218ab675a3d50bcd267361bddb04642[m[33m ([m[1;31morigin/FEAT/dependency-injection+repository-pattern[m[33m, [m[1;32mFEAT/dependency-injection+repository-pattern[m[33m)[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 22:03:06 2023 -0300
+
+    Adding the interfaces and repositories to controllers: Club, Race, training
+
+[33mcommit fe9ad07ab349e61ac9821464368c85d851c15d4e[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 22:00:12 2023 -0300
+
+    Fix repository to include club and trainings
+
+[33mcommit 4c906d044a211855521fe5dc0aca54c904420366[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 21:48:40 2023 -0300
+
+    Add interfaces and repositories to Program
+
+[33mcommit 65f329c88801b9089179f66de1038a24b2f385e1[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 21:45:58 2023 -0300
+
+    Added Interfaces and Repositories to: Race, Training, Club
+
+[33mcommit 3afc73a536fec168ffc21a8eac99c4f1a3ab3931[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 20:47:55 2023 -0300
+
+    General fixes to INDEX view of CLUB and SHARED Layout
+
+[33mcommit 3be818beb1a84cd36cf191067a5fce697fa1b743[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 20:47:24 2023 -0300
+
+    RACE controller and views to Detail and Index
+
+[33mcommit 2a3bb22653c888032dfc70c5ec64a359e4f21cc0[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 20:46:35 2023 -0300
+
+    TRAINING model, controller and views to add Detail and Index
+
+[33mcommit cc1aadfd177d7e96a6005028931247ff86d69827[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 20:16:51 2023 -0300
+
+    CLUB/Modify model to include training sessions and controllers to include detail and index view
+
+[33mcommit 2392a6d9b03aa512a6c59fc98299b2e90bf1c137[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 13:41:59 2023 -0300
+
+    Migration and Seed fixes to club-to-trainings relationship
+
+[33mcommit 0d2a68138acb04e9a1fb854f4c99fb9531f52440[m
+Merge: 99a1f37 10cef71
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 11:26:14 2023 -0300
+
+    Layout add controllers nav
+
+[33mcommit 99a1f37eac7b1d727284502ed530c8a469f1b562[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 10:56:56 2023 -0300
+
+    Add hero to _layout
+
+[33mcommit 10cef716589d1c26b2ca5d6df7c5ce61b1dc4752[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 10:56:56 2023 -0300
+
+    Add hero to _layout
+
+[33mcommit 67e99112a1b76be95534258fc79c0632cb03ac93[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 10:56:36 2023 -0300
+
+    Creating controller file and index html to: CLUB, RACE, TRAINING
+
+[33mcommit 1d66826206d24237c039690bc7981e052893d616[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 00:28:22 2023 -0300
+
+    Add DB context and connection to DB with Migration
+
+[33mcommit e0710ab7f489b17cddebb3f01ca30c0b01655f85[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 00:27:33 2023 -0300
+
+    Fix Trainning model
+
+[33mcommit d9f88e8f7d5edc34d6cc0d8b7fb2986ce9a860f3[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Fri Mar 10 00:27:12 2023 -0300
+
+    Data seeder
+
+[33mcommit 1a2fe6c7f47adddca24d307b1b365c4546fe4001[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Thu Mar 9 22:26:53 2023 -0300
+
+    Add db models and enumerables
+
+[33mcommit 5e3b2becebc58225756410e9777264c652c95f5e[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Thu Mar 9 17:35:15 2023 -0300
+
+    Add project files.
+
+[33mcommit 5168e4330a1fae9e4a9c5c327140792c8ef2663b[m
+Author: lucas-perata <contacto.perata@gmail.com>
+Date:   Thu Mar 9 17:35:13 2023 -0300
+
+    Add .gitattributes, .gitignore, and README.md.

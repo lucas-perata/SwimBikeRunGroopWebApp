@@ -3,13 +3,13 @@ using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
 using SwimBikeRunGroopWebApp.Helpers;
 using SwimBikeRunGroopWebApp.Interfaces;
-using System.Reflection.Metadata.Ecma335;
 
-namespace SwimBikeRunGroopWebApp.Services
+namespace RunGroopWebApp.Services
 {
     public class PhotoService : IPhotoService
     {
         private readonly Cloudinary _cloudinary;
+
         public PhotoService(IOptions<CloudinarySettings> config)
         {
             var acc = new Account(
@@ -17,7 +17,9 @@ namespace SwimBikeRunGroopWebApp.Services
                 config.Value.ApiKey,
                 config.Value.ApiSecret
                 );
+            _cloudinary = new Cloudinary(acc);
         }
+
         public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
@@ -29,18 +31,16 @@ namespace SwimBikeRunGroopWebApp.Services
                     File = new FileDescription(file.FileName, stream),
                     Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face")
                 };
-             uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                uploadResult = await _cloudinary.UploadAsync(uploadParams);
             }
             return uploadResult;
         }
-    
 
-        public async Task<DeletionResult> DeletePhotoAsync(string publicId)
+        public async Task<DeletionResult> DeletePhotoAsync(string publicUrl)
         {
-        var deleteParams = new DeletionParams(publicId);
-        var result = await _cloudinary.DestroyAsync(deleteParams);
-
-        return result;
+            var publicId = publicUrl.Split('/').Last().Split('.')[0];
+            var deleteParams = new DeletionParams(publicId);
+            return await _cloudinary.DestroyAsync(deleteParams);
         }
     }
 }

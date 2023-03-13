@@ -14,8 +14,8 @@ namespace SwimBikeRunGroopWebApp.Controllers
     {
         private readonly IClubRepository _clubRepository;
         private readonly IPhotoService _photoService;
-        public ClubController(IClubRepository clubRepository, IPhotoService photoService) 
-        { 
+        public ClubController(IClubRepository clubRepository, IPhotoService photoService)
+        {
             _clubRepository = clubRepository;
             _photoService = photoService;
         }
@@ -46,15 +46,15 @@ namespace SwimBikeRunGroopWebApp.Controllers
                 var club = new Club
                 {
                     Title = clubVM.Title,
-                    Description = clubVM.Description,
-                    Image = result.Url.ToString(),
                     Strava = clubVM.Strava,
                     IsWomensOnly = clubVM.IsWomensOnly,
+                    Description = clubVM.Description,
+                    Image = result.Url.ToString(),
                     ClubCategory = clubVM.ClubCategory,
                     Address = new Address
                     {
-                        City = clubVM.Address.City,
                         Street = clubVM.Address.Street,
+                        City = clubVM.Address.City,
                         Province = clubVM.Address.Province,
                     }
                 };

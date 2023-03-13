@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using RunGroopWebApp.Data;
+using RunGroopWebApp.Services;
 using SwimBikeRunGroopWebApp.Data;
 using SwimBikeRunGroopWebApp.Helpers;
 using SwimBikeRunGroopWebApp.Interfaces;
 using SwimBikeRunGroopWebApp.Repository;
-using SwimBikeRunGroopWebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

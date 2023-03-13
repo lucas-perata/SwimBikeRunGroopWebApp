@@ -34,7 +34,10 @@ namespace SwimBikeRunGroopWebApp.Repository
         {
             return await _context.Trainings.Where(t => t.Id == id).Include(c => c.Club).FirstOrDefaultAsync();
         }
-
+        public async Task<Training> GetByIdNoTracking(int id)
+        {
+            return await _context.Trainings.Where(t => t.Id == id).Include(c => c.Club).AsNoTracking().FirstOrDefaultAsync();
+        }
         public async Task<IEnumerable<Training>> GetTrainingByAddress(string startAddress)
         {
             return await _context.Trainings.Where(t => t.StartAddress == startAddress).ToListAsync();

@@ -32,7 +32,11 @@ namespace SwimBikeRunGroopWebApp.Repository
         public async Task<Club> GetByIdAsync(int id)
         {
             return await _context.Clubs.Include(c => c.Address).Include(c => c.Training).FirstOrDefaultAsync(i => i.ClubId == id);
-        } 
+        }
+        public async Task<Club> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Clubs.Include(c => c.Address).Include(c => c.Training).AsNoTracking().FirstOrDefaultAsync(i => i.ClubId == id);
+        }
 
         public async Task<IEnumerable<Club>> GetClubByCity(string city)
         {

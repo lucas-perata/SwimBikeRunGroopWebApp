@@ -209,34 +209,36 @@ namespace RunGroopWebApp.Data
                     }); ;
                     context.SaveChanges();
                 }
-                /* Training
-                if (!context.Trainings.Any())
-                {
-                    context.Trainings.AddRange(new List<Training>()
-                    {
-                        new Training()
-                        {   
-                            Title = "Training 1",
-                            DistanceFromStart = 60,
-                            StartAddress = "Posta",
-                            SportCategory = SportCategory.Cycling,
-                            AveragePace = 25
-                        },
-                        new Training()
-                        {
-                            Title = "Training 2",
-                            DistanceFromStart = 5,
-                            StartAddress = "Posta",
-                            SportCategory = SportCategory.Running,
-                            AveragePace = 8
-                        }
-                    }); ;
-                    context.SaveChanges();
-                }
-            }
-        } */
 
-                /* public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
+
+                /* Training
+                 if (!context.Trainings.Any())
+                 {
+                     context.Trainings.AddRange(new List<Training>()
+                     {
+                         new Training()
+                         {   
+                             Title = "Training 1",
+                             DistanceFromStart = 60,
+                             StartAddress = "Posta",
+                             SportCategory = SportCategory.Cycling,
+                             AveragePace = 25
+                         },
+                         new Training()
+                         {
+                             Title = "Training 2",
+                             DistanceFromStart = 5,
+                             StartAddress = "Posta",
+                             SportCategory = SportCategory.Running,
+                             AveragePace = 8
+                         }
+                     }); ;
+                     context.SaveChanges();
+                 } */
+            }
+        } 
+
+                public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
                 {
                     using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
                     {
@@ -250,21 +252,25 @@ namespace RunGroopWebApp.Data
 
                         //Users
                         var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-                        string adminUserEmail = "teddysmithdeveloper@gmail.com";
+                        string adminUserEmail = "lucas.perata@hotmail.com";
 
                         var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                         if (adminUser == null)
                         {
                             var newAdminUser = new AppUser()
                             {
-                                UserName = "teddysmithdev",
+                                UserName = "lucasperatadev",
                                 Email = adminUserEmail,
                                 EmailConfirmed = true,
+                                Pace = 5,
+                                RunWeekly = 20, 
+                                Bike = 27,
+                                BikeWeekly = 200,
                                 Address = new Address()
                                 {
                                     Street = "123 Main St",
-                                    City = "Charlotte",
-                                    Province = "NC"
+                                    City = "Vicente López",
+                                    Province = "BSAS"
                                 }
                             };
                             await userManager.CreateAsync(newAdminUser, "Coding@1234?");
@@ -281,19 +287,23 @@ namespace RunGroopWebApp.Data
                                 UserName = "app-user",
                                 Email = appUserEmail,
                                 EmailConfirmed = true,
+                                Pace = 5,
+                                RunWeekly = 20,
+                                Bike = 27,
+                                BikeWeekly = 200,
+                                Swim = 100,
+                                SwimWeekly = 100,
                                 Address = new Address()
                                 {
                                     Street = "123 Main St",
-                                    City = "Charlotte",
-                                    Province = "NC"
+                                    City = "Morón",
+                                    Province = "BSAS"
                                 }
                             };
                             await userManager.CreateAsync(newAppUser, "Coding@1234?");
                             await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                         }
                     }
-                } */
+                } 
             }
         }
-    }
-}

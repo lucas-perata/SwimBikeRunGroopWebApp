@@ -12,6 +12,7 @@ namespace SwimBikeRunGroopWebApp.ViewModels
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        
         [Display(Name = "Confirm")]
         [Required(ErrorMessage = "Confirm password is required")]
         [DataType(DataType.Password)]

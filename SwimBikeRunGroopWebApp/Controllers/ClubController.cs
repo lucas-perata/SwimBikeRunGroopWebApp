@@ -14,10 +14,12 @@ namespace SwimBikeRunGroopWebApp.Controllers
     {
         private readonly IClubRepository _clubRepository;
         private readonly IPhotoService _photoService;
-        public ClubController(IClubRepository clubRepository, IPhotoService photoService)
+        private readonly IHttpContextAccessor _contextAccessor;
+        public ClubController(IClubRepository clubRepository, IPhotoService photoService, IHttpContextAccessor contextAccessor)
         {
             _clubRepository = clubRepository;
             _photoService = photoService;
+            _contextAccessor = contextAccessor;
         }
         public async Task<IActionResult> Index()
         {
@@ -31,9 +33,11 @@ namespace SwimBikeRunGroopWebApp.Controllers
             return View(club);
         }
 
-        public IActionResult Create()
+        public IActionResult Create() 
         {
-            return View();
+            var curUserId = _contextAccessor.HttpContext.User.GetUserId();
+            var createClubViewModel = new CreateClubViewModel { AppUserId = curUserId };
+            return View(createClubViewModel);
         }
 
         [HttpPost]
@@ -51,6 +55,7 @@ namespace SwimBikeRunGroopWebApp.Controllers
                     Description = clubVM.Description,
                     Image = result.Url.ToString(),
                     ClubCategory = clubVM.ClubCategory,
+                    AppUserId = clubVM.AppUserId,
                     Address = new Address
                     {
                         Street = clubVM.Address.Street,

@@ -9,10 +9,11 @@ namespace SwimBikeRunGroopWebApp.Controllers
     public class RaceController : Controller
     {
         private readonly IRaceRepository _raceRepository;
-
-        public RaceController(IRaceRepository raceRepository)
+        private readonly IHttpContextAccessor _contextAccessor;
+        public RaceController(IRaceRepository raceRepository, IHttpContextAccessor contextAccessor)
         {
             _raceRepository = raceRepository;
+            _contextAccessor = contextAccessor;
         }
         public async Task<IActionResult> Index()
         {
@@ -28,7 +29,12 @@ namespace SwimBikeRunGroopWebApp.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var curUserId = _contextAccessor.HttpContext.User.GetUserId();
+            var race = new Race
+            {
+                AppUserId = curUserId,
+            };
+            return View(race);
         }
 
         [HttpPost]

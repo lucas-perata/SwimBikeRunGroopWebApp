@@ -52,5 +52,80 @@ namespace SwimBikeRunGroopWebApp.Controllers
             TempData["Error"] = "Email does not exist. Please, try again"; 
             return View(loginViewModel);
         }
+
+        public IActionResult Register()
+        {
+            var response = new RegisterViewModel(); 
+            return View(response);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+        {
+            if (!ModelState.IsValid) return View(registerViewModel);
+
+            var user = await _userManager.FindByEmailAsync(registerViewModel.EmailAddress);
+            if (user != null)
+            {
+                TempData["Error"] = "This email is registered";
+                return View();
+            }
+
+            var newUser = new AppUser()
+            {
+                Email = registerViewModel.EmailAddress,
+                UserName = registerViewModel.EmailAddress
+            }; 
+            var newUserResponse = await _userManager.CreateAsync(newUser);
+
+            if (newUserResponse.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult RegisterAdmin()
+        {
+            var response = new RegisterAdminViewModel();
+            return View(response);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> RegisterAdmin(RegisterAdminViewModel registerAdminViewModel)
+        {
+            if (!ModelState.IsValid) return View(registerAdminViewModel);
+
+            var user = await _userManager.FindByEmailAsync(registerAdminViewModel.EmailAddress);
+            if (user != null)
+            {
+                TempData["Error"] = "This email is registered";
+                return RedirectToAction("Account", "Login");
+            }
+
+            var newUserAdmin = new AppUser()
+            {
+                Email = registerAdminViewModel.EmailAddress,
+                UserName = registerAdminViewModel.EmailAddress,
+            };
+            var newUserResponse = await _userManager.CreateAsync(newUserAdmin);
+
+            if (newUserResponse.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(newUserAdmin, UserRoles.Admin);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

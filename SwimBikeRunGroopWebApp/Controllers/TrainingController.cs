@@ -13,11 +13,13 @@ namespace SwimBikeRunGroopWebApp.Controllers
     public class TrainingController : Controller
     {
         private readonly ITrainingRepository _trainingRepository;
+        private readonly IHttpContextAccessor _contextAccessor;
         private readonly ApplicationDbContext _context;
-        public TrainingController(ITrainingRepository trainingRepository, ApplicationDbContext context)
+        public TrainingController(ITrainingRepository trainingRepository, ApplicationDbContext context, IHttpContextAccessor contextAccessor)
         {
             _trainingRepository = trainingRepository;
             _context = context;
+            _contextAccessor = contextAccessor;
         }
 
         public async Task<IActionResult> Index()
@@ -35,7 +37,9 @@ namespace SwimBikeRunGroopWebApp.Controllers
         public IActionResult Create()
         {
             PopulateClubsDropDownList();
-            return View();
+            var curUserId = _contextAccessor.HttpContext.User.GetUserId(); 
+            var training = new Training { AppUserId = curUserId };
+            return View(training);
         }
 
         [HttpPost]
@@ -107,6 +111,16 @@ namespace SwimBikeRunGroopWebApp.Controllers
             };
 
             _trainingRepository.Update(training);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, Training training)
+        {
+            var trainingToDelete = await _trainingRepository.GetById(id); 
+
+             _trainingRepository.Delete(trainingToDelete);
 
             return RedirectToAction("Index");
         }

@@ -75,9 +75,9 @@ namespace SwimBikeRunGroopWebApp.Controllers
             var newUser = new AppUser()
             {
                 Email = registerViewModel.EmailAddress,
-                UserName = registerViewModel.EmailAddress
+                UserName = registerViewModel.EmailAddress,
             }; 
-            var newUserResponse = await _userManager.CreateAsync(newUser);
+            var newUserResponse = await _userManager.CreateAsync(newUser, registerViewModel.Password);
 
             if (newUserResponse.Succeeded)
             {
@@ -111,7 +111,7 @@ namespace SwimBikeRunGroopWebApp.Controllers
                 Email = registerAdminViewModel.EmailAddress,
                 UserName = registerAdminViewModel.EmailAddress,
             };
-            var newUserResponse = await _userManager.CreateAsync(newUserAdmin);
+            var newUserResponse = await _userManager.CreateAsync(newUserAdmin, registerAdminViewModel.Password);
 
             if (newUserResponse.Succeeded)
             {

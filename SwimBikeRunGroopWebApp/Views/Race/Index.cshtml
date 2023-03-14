@@ -19,10 +19,21 @@
                         <div class="card-body">
                             <h5 class="card-title">@item.Title</h5>
                             <p class="card-text">@item.Description</p>
-                            <a asp-controller="race" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-outline-primary">View</a>
-                            <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Race" asp-action="Edit" asp-route-id="@item.Id">
-                                Edit
-                            </a>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-controller="Race" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-outline-primary">View</a>
+
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                                    {
+                                        <a type="button" class="btn btn-outline-info" asp-controller="Race" asp-action="Edit" asp-route-id="@item.Id">
+                                            Edit
+                                        </a>
+                                        <form asp-action="Delete" asp-controller="Race" asp-route-id="@item.Id">
+                                            <a type="button" class="btn btn-outline-danger">Delete</a>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

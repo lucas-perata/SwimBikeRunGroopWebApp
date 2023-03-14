@@ -86,5 +86,15 @@ namespace SwimBikeRunGroopWebApp.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Delete(int id, Race race)
+        {
+            var raceToDelete = await _raceRepository.GetByIdAsync(id);
+            _raceRepository.Delete(raceToDelete);
+
+            return RedirectToAction("Index");
+        }
     }
 }

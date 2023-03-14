@@ -1,0 +1,93 @@
+﻿@model SwimBikeRunGroopWebApp.ViewModels.DashboardViewModel
+@{
+}
+
+<h1 class="display-4 fw-normal">Admin dashboard</h1> 
+
+<div>
+    <a type="button" class="btn btn-outline-primary" asp-controller="Club" asp-action="Create">Create club</a>
+    <a type="button" class="btn btn-outline-primary" asp-controller="Race" asp-action="Create">Create Race</a>
+    <a type="button" class="btn btn-outline-primary" asp-controller="Training" asp-action="Create">Create training</a>
+</div>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <h2>Races</h2>
+        <div class="row">
+            @foreach (var item in Model.Races)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 col-sm box-shadow">
+                        @* <img class="card-img-top" src="@item.Image" width="100%" height="225" alt="Card image cap"> *@
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">@item.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-controller="Race" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-outline-primary">View</a>
+                                    <a type="button" class="btn btn-outline-info" asp-controller="Race" asp-action="Edit" asp-route-id="@item.Id">
+                                            Edit
+                                    </a>
+                                    <form asp-action="Delete" asp-controller="Race" asp-route-id="@item.Id">
+                                            <button class="btn btn-outline-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <h2>Clubs</h2>
+        <div class="row">
+            @foreach (var item in Model.Clubs)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 col-sm box-shadow">
+                        <img class="card-img-top" src="@item.Image" width="100%" height="225" alt="Card image cap"> 
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">@item.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-controller="Club" asp-action="Detail" asp-route-id="@item.ClubId" class="btn btn-outline-primary">View</a>
+                                    <a type="button" class="btn btn-outline-info" asp-controller="Club" asp-action="Edit" asp-route-id="@item.ClubId">
+                                        Edit
+                                    </a>
+                                    <form asp-action="Delete" asp-controller="Club" asp-route-id="@item.ClubId">
+                                        <button class="btn btn-outline-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <h2>Trainings</h2>
+        <div class="row">
+            @foreach (var item in Model.Trainings)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 col-sm box-shadow">
+                        @* <img class="card-img-top" src="@item.Image" width="100%" height="225" alt="Card image cap">*@
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-controller="Training" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-outline-primary">View</a>
+                                    <a type="button" class="btn btn-outline-info" asp-controller="Training" asp-action="Edit" asp-route-id="@item.Id">
+                                        Edit
+                                    </a>
+                                    <form asp-action="Delete" asp-controller="Training" asp-route-id="@item.Id">
+                                        <button class="btn btn-outline-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

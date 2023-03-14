@@ -16,22 +16,22 @@ namespace SwimBikeRunGroopWebApp.Repository
         }
         public async Task<List<Club>> GetAllUserClubs()
         {
-            var curUser = _httpContextAccessor.HttpContext?.User;
-            var userClubs = await _context.Clubs.Where(r => r.AppUser.Id == curUser.ToString()).ToListAsync();
+            var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var userClubs = await _context.Clubs.Where(r => r.AppUser.Id == curUser).ToListAsync();
             return userClubs;
         }
 
         public async Task<List<Race>> GetAllUserRaces()
         {
-            var curUser = _httpContextAccessor.HttpContext?.User;
-            var userRaces = await  _context.Races.Where(r => r.AppUser.Id == curUser.ToString()).ToListAsync();
+            var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var userRaces = await  _context.Races.Where(r => r.AppUser.Id == curUser).ToListAsync();
             return userRaces;
         }
 
         public async Task<List<Training>> GetAllUserTrainings()
         {
-            var curUser = _httpContextAccessor.HttpContext?.User;
-            var userTrainings = await _context.Trainings.Where(r => r.AppUser.Id == curUser.ToString()).ToListAsync(); 
+            var curUser = _httpContextAccessor.HttpContext?.User.GetUserId();
+            var userTrainings = await _context.Trainings.Where(r => r.AppUser.Id == curUser).ToListAsync(); 
             return userTrainings;
         }
     }

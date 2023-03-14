@@ -4,8 +4,8 @@ namespace SwimBikeRunGroopWebApp.ViewModels
 {
     public class DashboardViewModel
     {
-        public IEnumerable<Race>? Races { get; set; }
-        public IEnumerable<Club>? Clubs { get; set; }
-        public IEnumerable<Training>? Trainings { get; set; }
+        public List<Race> Races { get; set; }
+        public List<Club> Clubs { get; set; }
+        public List<Training> Trainings { get; set; }
     }
 }

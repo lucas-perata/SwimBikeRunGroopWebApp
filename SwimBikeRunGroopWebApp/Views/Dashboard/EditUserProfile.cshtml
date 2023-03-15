@@ -1,0 +1,78 @@
+﻿@using SwimBikeRunGroopWebApp.ViewModels
+@model EditUserDashboardViewModel
+
+<div class="container">
+    <form method="post" asp-action="EditUserProfile" enctype="multipart/form-data">
+        <input asp-for="Id" name="Id" type="hidden" id="Id" />
+        <div>
+            <h2>Sports info</h2>
+            <div class="form-group">
+                <label asp-for="Swim" class="form-control-plaintext"></label>
+                <input asp-for="Swim" class="form-control" value="" />
+                <span asp-validation-for="Swim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SwimWeekly" class="form-control-plaintext"></label>
+                <input asp-for="SwimWeekly" class="form-control" value="" />
+                <span asp-validation-for="SwimWeekly" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pace" class="form-control-plaintext"></label>
+                <input asp-for="Pace" class="form-control" value="" />
+                <span asp-validation-for="Pace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RunWeekly" class="form-control-plaintext"></label>
+                <input asp-for="RunWeekly" class="form-control" value="" />
+                <span asp-validation-for="RunWeekly" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bike" class="form-control-plaintext"></label>
+                <input asp-for="Bike" class="form-control" value="" />
+                <span asp-validation-for="Bike" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BikeWeekly" class="form-control-plaintext"></label>
+                <input asp-for="BikeWeekly" class="form-control" value="" />
+                <span asp-validation-for="BikeWeekly" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <h2>Address info</h2>
+            <div class="form-group">
+                <label asp-for="Town" class="form-control-plaintext"></label>
+                <input asp-for="Town" class="form-control" value="" />
+                <span asp-validation-for="Town" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="form-control-plaintext"></label>
+                <input asp-for="City" class="form-control" value="" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Province" class="form-control-plaintext"></label>
+                <input asp-for="Province" class="form-control" value="" />
+                <span asp-validation-for="Province" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Image" class="form-control-plaintext"></label>
+            <input asp-for="Image" type="file" class="form-control" value="" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+@*
+     public string? ProfileImageUrl { get; set; }
+        public string? Town { get; set; }
+        public string? City { get; set; }
+        public string? Province { get; set; }
+        public int? Pace { get; set; }
+        public int? RunWeekly { get; set; }
+        public int? Swim { get; set; }
+        public int? SwimWeekly { get; set; }
+        public int? Bike { get; set; }
+        public int? BikeWeekly { get; set; }
+*@

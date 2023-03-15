@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace SwimBikeRunGroopWebApp.Models
+﻿namespace SwimBikeRunGroopWebApp.ViewModels
 {
-    public class AppUser : IdentityUser
+    public class EditUserDashboardViewModel
     {
+        public string Id { get; set; }
         public string? ProfileImageUrl { get; set; }
         public string? Town { get; set; }
         public string? City { get; set; }
@@ -15,10 +13,6 @@ namespace SwimBikeRunGroopWebApp.Models
         public int? SwimWeekly { get; set; }
         public int? Bike { get; set; }
         public int? BikeWeekly { get; set; }
-        public int? AddressId { get; set; }
-        public Address? Address { get; set; }
-        public ICollection<Club> Clubs { get; set; }
-        public ICollection<Training> Trainings { get; set; }
-        public ICollection<Race> Races { get; set; }
+        public IFormFile Image { get; set; }
     }
 }

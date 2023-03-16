@@ -120,6 +120,39 @@ namespace SwimBikeRunGroopWebApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult RegisterSuperAdmin()
+        {
+            var response = new RegisterAdminViewModel();
+            return View(response);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> RegisterSuperAdmin(RegisterAdminViewModel registerAdminViewModel)
+        {
+            if (!ModelState.IsValid) return View(registerAdminViewModel);
+
+            var user = await _userManager.FindByEmailAsync(registerAdminViewModel.EmailAddress);
+            if (user != null)
+            {
+                TempData["Error"] = "This email is registered";
+                return RedirectToAction("Account", "Login");
+            }
+
+            var newUserAdmin = new AppUser()
+            {
+                Email = registerAdminViewModel.EmailAddress,
+                UserName = registerAdminViewModel.EmailAddress,
+            };
+            var newUserResponse = await _userManager.CreateAsync(newUserAdmin, registerAdminViewModel.Password);
+
+            if (newUserResponse.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(newUserAdmin, UserRoles.SuperAdmin);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
 
         public async Task<IActionResult> Logout()

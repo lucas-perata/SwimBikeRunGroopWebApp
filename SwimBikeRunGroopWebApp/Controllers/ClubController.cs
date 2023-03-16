@@ -43,34 +43,41 @@ namespace SwimBikeRunGroopWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateClubViewModel clubVM)
         {
-            if (ModelState.IsValid)
+            if (_clubRepository.UserHasClub(_contextAccessor.HttpContext.User.GetUserId()) == false)
             {
-                var result = await _photoService.AddPhotoAsync(clubVM.Image);
-
-                var club = new Club
+                if (ModelState.IsValid)
                 {
-                    Title = clubVM.Title,
-                    Strava = clubVM.Strava,
-                    IsWomensOnly = clubVM.IsWomensOnly,
-                    Description = clubVM.Description,
-                    Image = result.Url.ToString(),
-                    ClubCategory = clubVM.ClubCategory,
-                    AppUserId = clubVM.AppUserId,
-                    Address = new Address
+                    var result = await _photoService.AddPhotoAsync(clubVM.Image);
+
+                    var club = new Club
                     {
-                        Street = clubVM.Address.Street,
-                        City = clubVM.Address.City,
-                        Province = clubVM.Address.Province,
-                    }
-                };
-                _clubRepository.Add(club);
-                return RedirectToAction("Index");
+                        Title = clubVM.Title,
+                        Strava = clubVM.Strava,
+                        IsWomensOnly = clubVM.IsWomensOnly,
+                        Description = clubVM.Description,
+                        Image = result.Url.ToString(),
+                        ClubCategory = clubVM.ClubCategory,
+                        AppUserId = clubVM.AppUserId,
+                        Address = new Address
+                        {
+                            Street = clubVM.Address.Street,
+                            City = clubVM.Address.City,
+                            Province = clubVM.Address.Province,
+                        }
+                    };
+                    _clubRepository.Add(club);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Photo upload failed");
+                }
             }
             else
             {
-                ModelState.AddModelError("", "Photo upload failed");
+                ModelState.AddModelError("", "Users can create only one club");
+                return RedirectToAction("Index");
             }
-
             return View(clubVM);
         }
 

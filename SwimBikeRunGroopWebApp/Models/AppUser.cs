@@ -20,5 +20,7 @@ namespace SwimBikeRunGroopWebApp.Models
         public ICollection<Club> Clubs { get; set; }
         public ICollection<Training> Trainings { get; set; }
         public ICollection<Race> Races { get; set; }
+
+        public ICollection<UserClub> UserClubs { get; set; }
     }
 }

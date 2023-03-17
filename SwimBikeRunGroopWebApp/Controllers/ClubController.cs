@@ -29,8 +29,29 @@ namespace SwimBikeRunGroopWebApp.Controllers
 
         public async Task<IActionResult> Detail(int id)
         {
-            Club club = await _clubRepository.GetByIdAsync(id);
-            return View(club);
+           
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var curUserId = _contextAccessor.HttpContext.User.GetUserId();
+                var hasClub = _clubRepository.UserIsInClub(id, curUserId);
+                Club club = await _clubRepository.GetByIdAsync(id);
+                var model = new DetailViewModel
+                {
+                    hasClub = hasClub,
+                    club = club,
+                };
+                return View(model);
+            }
+            else
+            {
+                Club club = await _clubRepository.GetByIdAsync(id);
+                var model = new DetailViewModel
+                {
+                    club = club,
+                };
+                return View(model);
+            }
         }
 
         public IActionResult Create() 
@@ -158,5 +179,29 @@ namespace SwimBikeRunGroopWebApp.Controllers
             return RedirectToAction("Index");   
         }
 
+        [HttpPost]
+
+        public async Task<IActionResult> JoinClub(int clubId)
+        {
+            var curUserId = _contextAccessor.HttpContext.User.GetUserId();
+
+            if (_clubRepository.UserIsInClub(clubId, curUserId) == false)
+            {
+                var userClub = new UserClub
+                {
+                    AppUserId = curUserId,
+                    ClubId = clubId,
+                };
+                _clubRepository.AddUserToClub(userClub);
+                return RedirectToAction("Detail", new { id = clubId });
+            }
+            else
+            {
+                return RedirectToAction("Index");
+
+            }
+
+
+        }      
     }
 }

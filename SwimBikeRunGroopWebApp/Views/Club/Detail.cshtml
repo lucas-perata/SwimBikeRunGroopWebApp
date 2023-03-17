@@ -1,4 +1,4 @@
-﻿@model Club
+﻿@model SwimBikeRunGroopWebApp.ViewModels.DetailViewModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -8,26 +8,26 @@
 <div class="container">
 
     <h1 class="my-4">
-        @Model.Title
+        @Model.club.Title
     </h1>
 
     <div class="row">
 
         <div class="col-md-8">
-            <img class="img-fluid" src="@Model.Image" alt="">
+            <img class="img-fluid" src="@Model.club.Image" alt="">
         </div>
 
         <div class="col-md-4">
-            <p>@Model.Description</p>
+            <p>@Model.club.Description</p>
             <h2 class="my-3">Club Details</h2>
             <ul>
-                <li>@Model.ClubCategory</li>
-                <li>@Model.Address.Province</li>
+                <li>@Model.club.ClubCategory</li>
+                <li>@Model.club.Address.Province</li>
             </ul>
             
-            @if (Model.Training.Any())
+            @if (Model.club.Training.Any())
             {
-                @foreach (var item in Model.Training)
+                @foreach (var item in Model.club.Training)
                 {
                     <p>@item.Title</p>
                 }
@@ -64,6 +64,17 @@
                 <img class="img-fluid" src="https://via.placeholder.com/500x300" alt="">
             </a>
         </div>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            @if (Model.hasClub == false)
+            {
+                <form method="post" asp-action="JoinClub">
+                    <input type="hidden" id="ClubId" name="ClubId" asp-for="club.ClubId" value="@Model.club.ClubId" />
+                    <button type="submit" class="btn btn-primary">Join club</button>
+                </form>
+            }
+        }
 
     </div>
     <!-- /.row -->

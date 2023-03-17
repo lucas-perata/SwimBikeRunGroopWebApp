@@ -24,5 +24,8 @@ namespace SwimBikeRunGroopWebApp.Models
         [ForeignKey("AppUser")]
         public string? AppUserId { get; set; }
         public AppUser? AppUser { get; set; }
+
+        public ICollection<UserClub> UserClubs { get; set; }
+
     }
 }

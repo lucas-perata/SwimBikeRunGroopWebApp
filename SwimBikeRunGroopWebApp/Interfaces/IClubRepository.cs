@@ -8,7 +8,9 @@ namespace SwimBikeRunGroopWebApp.Interfaces
         Task<Club> GetByIdAsync(int id);
         Task<Club> GetByIdAsyncNoTracking(int id);
         Task<IEnumerable<Club>> GetClubByCity(string city);
-        
+
+        bool AddUserToClub(UserClub userClub);
+        bool UserIsInClub(int clubId, string appUserId);
         bool UserHasClub(string id);
         bool Add(Club club);
         bool Update(Club club);

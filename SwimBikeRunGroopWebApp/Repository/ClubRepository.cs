@@ -66,5 +66,11 @@ namespace SwimBikeRunGroopWebApp.Repository
             var userClub = _context.Clubs.Where(c => c.AppUserId == id).FirstOrDefault();
             return userClub != null;
         }
+        public bool UserIsInClub(int clubId, string appUserId)
+        {
+            var userIsInClub = _context.Clubs.Include(c => c.UserClubs).SingleOrDefault(c => c.ClubId == clubId);
+            var hasUser = userIsInClub.UserClubs.Any(uc => uc.AppUserId == appUserId);
+            return hasUser;
+        }
     }
 }

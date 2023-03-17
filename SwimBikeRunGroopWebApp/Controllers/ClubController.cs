@@ -158,29 +158,29 @@ namespace SwimBikeRunGroopWebApp.Controllers
             return RedirectToAction("Index");   
         }
 
-        [HttpGet]
-
-        public async Task<IActionResult> JoinClub()
-        {
-            var curUserId = _contextAccessor.HttpContext.User.GetUserId();
-            var userClubViewModel = new UserClubViewModel { AppUserId = curUserId, ClubId = 1 };
-            return View(userClubViewModel);
-        }
-
         [HttpPost]
 
         public async Task<IActionResult> JoinClub(int clubId)
         {
             var curUserId = _contextAccessor.HttpContext.User.GetUserId();
 
-            var userClub =  new UserClub
+            if (_clubRepository.UserIsInClub(clubId, curUserId) == false)
             {
-                AppUserId = curUserId,
-                ClubId = clubId, 
-            };
+                var userClub = new UserClub
+                {
+                    AppUserId = curUserId,
+                    ClubId = clubId,
+                };
+                _clubRepository.AddUserToClub(userClub);
+                return RedirectToAction("Detail", new { id = clubId });
+            }
+            else
+            {
+                return RedirectToAction("Index");
 
-            _clubRepository.AddUserToClub(userClub);
-            return RedirectToAction("Detail", new { id = clubId });
+            }
+
+
         }
 
     }

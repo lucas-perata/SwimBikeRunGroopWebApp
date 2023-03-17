@@ -34,37 +34,39 @@ namespace SwimBikeRunGroopWebApp.Controllers
             return View(training);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            PopulateClubsDropDownList();
-            var curUserId = _contextAccessor.HttpContext.User.GetUserId(); 
-            var training = new Training { AppUserId = curUserId };
-            return View(training);
+            var curUserId = _contextAccessor.HttpContext.User.GetUserId();
+            var adminClub = await _trainingRepository.AdminClub(curUserId);
+            var createTrainingViewModel = new CreateTrainingViewModel { AppUserId = curUserId, ClubId = adminClub.ClubId };
+            return View(createTrainingViewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Training training)
-        {
-           
-                if (!ModelState.IsValid)
+        public async Task<IActionResult> Create(CreateTrainingViewModel createTrainingVM)
+        {      
+            if (ModelState.IsValid)
+            {
+                var training = new Training
                 {
-                PopulateClubsDropDownList(training.ClubId);
+                    Title = createTrainingVM.Title,
+                    ClubId = createTrainingVM.ClubId,
+                    DistanceFromStart = createTrainingVM.DistanceFromStart,
+                    StartAddress = createTrainingVM.StartAddress,
+                    AveragePace = createTrainingVM.AveragePace,
+                    AppUserId = createTrainingVM.AppUserId
+                };
+                _trainingRepository.Add(training);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Problems creating a training");
+            }
 
-                return View(training);
-  
-                }
-            _trainingRepository.Add(training);
-            return RedirectToAction("Index");
-
+            return View(createTrainingVM);
         }
 
-        private void PopulateClubsDropDownList(object selectedClub = null)
-        {
-            var clubsQuery = from d in _context.Clubs
-                                   orderby d.Title
-                                   select d;
-            ViewBag.ClubId = new SelectList(clubsQuery.AsNoTracking(), "ClubId", "Title", selectedClub);
-        }
 
         [HttpGet]
 

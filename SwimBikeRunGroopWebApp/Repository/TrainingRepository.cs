@@ -19,6 +19,12 @@ namespace SwimBikeRunGroopWebApp.Repository
             return Save();
         }
 
+        public async Task<Club> AdminClub(string id)
+        {
+            var adminClub = await _context.Clubs.Where(c => c.AppUserId == id).FirstOrDefaultAsync();
+            return adminClub;
+        }
+
         public bool Delete(Training training)
         {
             _context.Remove(training);

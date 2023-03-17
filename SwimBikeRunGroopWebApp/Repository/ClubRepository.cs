@@ -30,6 +30,13 @@ namespace SwimBikeRunGroopWebApp.Repository
             return Save();
         }
 
+        public bool DeleteUserOfClub(UserClub userClub)
+        {   
+
+            _context.Remove(userClub);
+            return Save();
+        }
+
         public async Task<IEnumerable<Club>> GetAll()
         {
             return await _context.Clubs.ToListAsync();
@@ -47,6 +54,13 @@ namespace SwimBikeRunGroopWebApp.Repository
         public async Task<IEnumerable<Club>> GetClubByCity(string city)
         {
             return await _context.Clubs.Where(c => c.Address.City.Contains(city)).ToListAsync();
+        }
+
+        public async Task<UserClub> GetUserClubById(int clubId, string appUserId)
+        {
+            var userClub = await _context.Clubs.Include(c => c.UserClubs).SingleOrDefaultAsync(c => c.ClubId == clubId);
+            var userClubId = userClub.UserClubs.Where(uc => uc.AppUserId == appUserId).SingleOrDefault();
+            return userClubId;
         }
 
         public bool Save()

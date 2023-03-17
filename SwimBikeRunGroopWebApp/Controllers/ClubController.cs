@@ -200,8 +200,20 @@ namespace SwimBikeRunGroopWebApp.Controllers
                 return RedirectToAction("Index");
 
             }
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> LeaveClub(int clubId)
+        {
+            var curUserId = _contextAccessor.HttpContext.User.GetUserId();
 
-        }      
+            if (_clubRepository.UserIsInClub(clubId, curUserId) == true)
+            {
+                var relationToDelete = await _clubRepository.GetUserClubById(clubId, curUserId);
+                _clubRepository.DeleteUserOfClub(relationToDelete);
+            }
+
+            return RedirectToAction("Detail", new { id = clubId });
+        }
     }
 }

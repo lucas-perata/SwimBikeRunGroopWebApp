@@ -18,6 +18,12 @@ namespace SwimBikeRunGroopWebApp.Repository
             return Save();
         }
 
+        public bool AddUserToClub(UserClub userClub)
+        {
+            _context.Add(userClub);
+            return Save();
+        }
+
         public bool Delete(Club club)
         {
             _context.Remove(club);

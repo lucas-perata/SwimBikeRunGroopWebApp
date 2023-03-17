@@ -65,6 +65,11 @@
             </a>
         </div>
 
+        <form method="post" asp-action="JoinClub">
+            <input type="hidden" id="ClubId" name="ClubId" asp-for="ClubId" value="@Model.ClubId" />
+            <button type="submit" class="btn btn-primary">Join club</button>
+        </form>
+
     </div>
     <!-- /.row -->
 

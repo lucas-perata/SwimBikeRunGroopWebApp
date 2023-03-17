@@ -74,6 +74,13 @@
                     <button type="submit" class="btn btn-primary">Join club</button>
                 </form>
             }
+            else
+            {
+                <form asp-action="LeaveClub" asp-controller="Club">
+                    <input type="hidden" id="ClubId" name="ClubId" asp-for="club.ClubId" value="@Model.club.ClubId" />
+                    <button class="btn btn-outline-danger">Delete</button>
+                </form>
+            }
         }
 
     </div>
